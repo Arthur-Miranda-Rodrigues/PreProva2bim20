@@ -1,0 +1,30 @@
+name: contando arquivos HTML, CSS e JS
+on:
+ workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Count HTML files
+        run: |
+          echo "Contando arquivos HTML..."
+          find . -type f -name "*.html" | wc -l > html_count.txt
+          echo "Número de arquivos HTML: $(cat html_count.txt)"
+
+      - name: Count CSS files
+        run: |
+          echo "Contando arquivos CSS..."
+          find . -type f -name "*.css" | wc -l > css_count.txt
+          echo "Número de arquivos CSS: $(cat css_count.txt)"
+
+      - name: Count JS files
+        run: |
+          echo "Contando arquivos JS..."
+          find . -type f -name "*.js" | wc -l > js_count.txt
+          echo "Número de arquivos JS: $(cat js_count.txt)"
+
